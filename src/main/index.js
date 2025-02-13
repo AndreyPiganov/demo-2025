@@ -1,8 +1,7 @@
 import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import { join } from 'path';
-import { electronApp, optimizer, is } from '@electron-toolkit/utils';
+import { electronApp, is } from '@electron-toolkit/utils';
 import connectDB from './db.js';
-import { resolve } from 'path';
 
 let primaryWindow;
 
