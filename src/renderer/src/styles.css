@@ -1,0 +1,120 @@
+body {
+  font-family: 'Calibri', sans-serif;
+  background-color: #FFFFFF;
+  padding: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+}
+.page-logo {
+  width: 120px;
+}
+
+.add-button, .back-button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 15px;
+  text-align: center;
+  background-color: #B11AED;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.family-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.family-card {
+  border: 2px solid black;
+  padding: 15px;
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-left p {
+  margin: 5px 0;
+}
+
+.card-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+button {
+  background-color: #EBE84B;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.budget-status {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+/* Стили для формы */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 400px;
+  background: #F4E8D3;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #B11AED;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #8d0fb8;
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: -5px;
+}

@@ -1,0 +1,91 @@
+CREATE TABLE family_members (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    birth_date DATE,
+    email VARCHAR(255) UNIQUE,
+    phone VARCHAR(20),
+    role VARCHAR(50)
+);
+
+CREATE TABLE family_members_job (
+    id SERIAL PRIMARY KEY,
+    family_member_id INT REFERENCES family_members(id) ON DELETE CASCADE,
+    job_title VARCHAR(255) NOT NULL,
+    employer VARCHAR(255),
+    salary NUMERIC(10,2),
+    start_date DATE
+);
+
+CREATE TABLE categories (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) UNIQUE NOT NULL,
+    description TEXT
+);
+
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) UNIQUE NOT NULL,
+    category_id INT REFERENCES categories(id) ON DELETE SET NULL,
+    price NUMERIC(10,2) NOT NULL
+);
+
+CREATE TABLE expenses (
+    id SERIAL PRIMARY KEY,
+    family_member_id INT REFERENCES family_members(id) ON DELETE CASCADE,
+    product_id INT REFERENCES products(id) ON DELETE SET NULL,
+    amount NUMERIC(10,2) NOT NULL,
+    transaction_date DATE NOT NULL,
+    payment_method VARCHAR(50),
+    receipt_link TEXT
+);
+
+INSERT INTO family_members (full_name, birth_date, email, phone, role)
+VALUES
+    ('Иванов Иван Петрович', '1985-06-15', NULL, NULL, NULL),
+    ('Иванова Мария Сергеевна', '1987-09-20', NULL, NULL, NULL),
+    ('Иванов Алексей Иванович', '2010-02-05', NULL, NULL, NULL),
+    ('Иванова Елена Викторовна', '1959-03-10', NULL, NULL, NULL),
+    ('Петров Сергей Александрович', '1982-12-05', NULL, NULL, NULL);
+
+INSERT INTO family_members_job (family_member_id, job_title, employer, salary, start_date)
+VALUES
+    (1, 'Инженер', 'ООО "ТехноСервис"', 85000, '2015-03-01'),
+    (2, 'Бухгалтер', 'АО "ФинансГрупп"', 75000, '2012-04-15'),
+    (4, 'Репетитор', 'Частная практика', 15000, '2020-01-10'),
+    (5, 'Таксист', 'Индивидуальная работа', 30000, '2020-09-01');
+
+INSERT INTO categories (name, description)
+VALUES
+    ('Продукты', 'Продовольственные товары'),
+    ('Одежда', 'Одежда и обувь'),
+    ('Транспорт', 'Расходы на транспорт'),
+    ('Развлечения', 'Расходы на развленеие'),
+    ('Образование', 'Расходы на образование'),
+    ('Здоровье', 'Расходы на здоровье'),
+    ('Кредиты', 'Расходы на погашение кредитов'),
+    ('Подарки', 'Расходы на подарки');
+
+
+INSERT INTO products (name, category_id, price)
+VALUES
+    ('Хлеб', 1, 50.00),
+    ('Молоко', 1, 80.00),
+    ('Бензин', 3, 80.00),
+    ('Билет в кино', 4, 300.00),
+    ('Зимнее пальто', 2, 8500.00),
+    ('Учебники', 5, 400.00),
+    ('Лекарства', 6, 25000.00),
+    ('Погашение кредита', 7, 89000.00),
+    ('Смартфон в подарок', 8, 99900.00);
+
+INSERT INTO expenses (family_member_id, product_id, amount, transaction_date, payment_method, receipt_link)
+VALUES
+    (1, 1, 2, '2025-02-01', NULL, NULL),
+    (1, 2, 3, '2025-02-01', NULL, NULL),
+    (1, 2, 1, '2025-02-01', NULL, NULL),
+    (2, 5, 1, '2025-02-06', NULL, NULL),
+    (5, 3, 30, '2025-02-09', NULL, NULL),
+    (4, 7, 5, '2025-02-12', NULL, NULL),
+    (1, 8, 1, '2025-02-18', NULL, NULL),
+    (2, 9, 1, '2025-02-22', NULL, NULL),
+    (3, 4, 1, '2025-02-18', NULL, NULL);
